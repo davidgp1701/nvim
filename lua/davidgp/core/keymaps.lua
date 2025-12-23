@@ -65,5 +65,19 @@ vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { desc = 'Makes the act
 -- Neogit
 vim.keymap.set('n', '<leader>gs', '<cmd>Neogit<CR>', { desc = 'Opens Neogit' })
 
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+-- Diagnostics
+vim.keymap.set('n', '[d', function()
+  vim.diagnostic.jump { count = -1, float = true }
+end, { desc = 'Jump to next diagnositic' })
+vim.keymap.set('n', ']d', function()
+  vim.diagnostic.jump { count = 1, float = true }
+end, { desc = 'Jump to previous diagnostic' })
+
+-- Copy and Paste
+vim.keymap.set('x', '<leader>p', '"_dP', { desc = 'Replace without yanking' })
+
+vim.keymap.set('n', '<leader>d', '"_d', { desc = 'Delete without yanking' }) -- e.g <leader>dd deletes the current line without yanking it
+vim.keymap.set('n', '<leader>D', '"_D', { desc = 'Delete until EOL without yanking' })
+
+vim.keymap.set('n', '<leader>c', '"_c', { desc = 'Change without yanking' })
+vim.keymap.set('n', '<leader>C', '"_C', { desc = 'Change until EOL without yanking' })
