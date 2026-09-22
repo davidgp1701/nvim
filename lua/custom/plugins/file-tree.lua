@@ -47,6 +47,16 @@ return {
     },
     lazy = false, -- neo-tree will lazily load itself
     config = function()
+      require('neo-tree').setup {
+        filesystem = {
+          filtered_items = {
+            visible = true, -- when true, they will just be displayed differently than normal items
+            hide_gitignored = true,
+            hide_ignored = true, -- hide files that are ignored by other gitignore-like files
+            hide_dotfiles = false,
+          },
+        },
+      }
       vim.cmd [[nnoremap \ :Neotree reveal<cr>]]
       local keymap = vim.keymap -- for conciseness
       keymap.set('n', '<leader>ee', '<cmd>Neotree toggle<CR>', { desc = 'Toggle file explorer' }) -- toggle file explorer
